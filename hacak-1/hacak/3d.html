@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>ResuMint AI — Resume + Portfolio Builder</title>
+  <meta name="description"
+    content="AI-assisted resume + portfolio builder that turns your raw skills, projects, and experience into a recruiter-ready story in minutes." />
+  <link rel="stylesheet" href="./land.css" />
+  <link rel="stylesheet" href="./has3d.css" />
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- 3D intro removed -->
+
+  <header class="topbar" data-elevate>
+    <div class="container topbar__inner">
+      <a class="brand" href="#" aria-label="ResuMint AI home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" focusable="false">
+            <path
+              d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2zm5.7 6.2c-1.6-1.7-3.4-2.6-5.6-2.6-3.9 0-7 3.1-7 7 0 3.9 3.1 7 7 7 2.2 0 4.1-.8 5.6-2.6l-2.2-1.8c-.9 1.1-2 1.6-3.4 1.6-2.2 0-4-1.8-4-4s1.8-4 4-4c1.4 0 2.6.6 3.4 1.6l2.2-1.8z"
+              fill="currentColor" />
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">ResuMint</span>
+          <span class="brand__tag">AI</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#demo">Live demo</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <button class="iconbtn" id="themeBtn" type="button" aria-label="Toggle theme" aria-pressed="false">
+          <span class="iconbtn__icon" aria-hidden="true" data-icon="sun">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-16 1.2 2.7L16 6l-2.7 1.2L12 10 10.7 7.2 8 6l2.7-1.3L12 2Zm10 10-2.7 1.2L18 16l-1.2-2.7L14 12l2.8-1.3L18 8l1.3 2.7L22 12ZM12 22l-1.3-2.7L8 18l2.7-1.2L12 14l1.2 2.7L16 18l-2.8 1.3L12 22ZM2 12l2.7-1.2L6 8l1.2 2.7L10 12l-2.8 1.3L6 16l-1.3-2.7L2 12Z"
+                fill="currentColor" />
+            </svg>
+          </span>
+          <span class="iconbtn__icon" aria-hidden="true" data-icon="moon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 14.2A8.6 8.6 0 0 1 9.8 3a7.5 7.5 0 1 0 11.2 11.2Z" fill="currentColor" />
+            </svg>
+          </span>
+        </button>
+        <a class="btn btn--ghost" href="#demo">See it live</a>
+        <a class="btn btn--primary" href="#cta">Start building</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="orb orb--a"></div>
+        <div class="orb orb--b"></div>
+        <div class="orb orb--c"></div>
+        <div class="grid"></div>
+        <canvas class="sparks" id="sparks" aria-hidden="true"></canvas>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="pill">
+            <span class="pill__dot" aria-hidden="true"></span>
+            Hackathon-ready • HR-Tech • Built for hiring signals
+          </p>
+          <h1>
+            Turn scattered experience into a
+            <span class="grad">recruiter-ready story</span>
+            — with AI.
+          </h1>
+          <p class="lead">
+            ResuMint AI organizes your skills, projects, and impact into an ATS-friendly resume and a modern portfolio
+            in minutes. It doesn’t just “write” — it structures your narrative like a hiring manager thinks.
+          </p>
+
+          <div class="proof">
+            <div class="proof__item">
+              <div class="proof__num" data-counter="8">0</div>
+              <div class="proof__label">sections auto-structured</div>
+            </div>
+            <div class="proof__item">
+              <div class="proof__num"><span data-counter="3">0</span>×</div>
+              <div class="proof__label">clearer impact bullets</div>
+            </div>
+            <div class="proof__item">
+              <div class="proof__num"><span data-counter="90">0</span>s</div>
+              <div class="proof__label">to first draft</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__panel" aria-label="Product preview">
+          <div class="glass card">
+            <div class="card__top">
+              <div class="dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="card__title">ATS Checker</div>
+              <div class="chip" aria-hidden="true">Live</div>
+            </div>
+
+            <div class="card__content" style="position: relative; overflow: hidden;">
+              <div class="hero__scanner"></div>
+              <iframe class="atsFrame" src="./ats.html" title="ATS Checker" loading="lazy"></iframe>
+            </div>
+          </div>
+
+          <div class="badgeRow">
+            <div class="badge">
+              <span class="badge__icon" aria-hidden="true">◎</span>
+              ATS-friendly structure
+            </div>
+            <div class="badge">
+              <span class="badge__icon" aria-hidden="true">↯</span>
+              Portfolio in 1 click
+            </div>
+            <div class="badge">
+              <span class="badge__icon" aria-hidden="true">⟡</span>
+              Impact-first bullets
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip" aria-label="Trusted-by strip">
+      <div class="container strip__inner">
+        <div class="strip__label">Designed for signals hiring teams care about</div>
+        <div class="logos" aria-hidden="true">
+          <span>ATS</span><span>Impact</span><span>Clarity</span><span>Keywords</span><span>Proof</span><span>Story</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>Not another template. A narrative engine.</h2>
+          <p>
+            Most resume tools format. ResuMint AI <b>structures</b> — it extracts role-relevant signals, rewrites
+            bullets
+            with measurable impact, and generates a matching portfolio page.
+          </p>
+        </div>
+
+        <div class="grid3">
+          <article class="feature glass">
+            <div class="feature__icon" aria-hidden="true">⟡</div>
+            <h3>Signal-aware writing</h3>
+            <p>Turns “did a project” into “built X, improved Y by Z%” using impact verbs + quantification hints.</p>
+            <ul class="ticks">
+              <li>Role targeting</li>
+              <li>ATS keyword balance</li>
+              <li>Human-readable</li>
+            </ul>
+          </article>
+
+          <article class="feature glass">
+            <div class="feature__icon" aria-hidden="true">◎</div>
+            <h3>Resume + portfolio twins</h3>
+            <p>One source of truth. Update a project once; your resume and portfolio stay aligned automatically.</p>
+            <ul class="ticks">
+              <li>Project cards</li>
+              <li>Case-study bullets</li>
+              <li>Link-ready</li>
+            </ul>
+          </article>
+
+          <article class="feature glass">
+            <div class="feature__icon" aria-hidden="true">↯</div>
+            <h3>Confidence checks</h3>
+            <p>Highlights weak claims, missing metrics, and overused buzzwords — with suggestions to fix them.</p>
+            <ul class="ticks">
+              <li>Clarity score</li>
+              <li>Impact score</li>
+              <li>Credibility flags</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2>From raw notes to ready-to-send.</h2>
+          <p>Three steps that feel like magic, but stay grounded in structure and hiring logic.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step glass">
+            <div class="step__n">1</div>
+            <div class="step__body">
+              <h3>Drop your content</h3>
+              <p>Skills, roles, projects, links, even messy notes. We don’t punish imperfect input.</p>
+              <div class="step__chips" aria-hidden="true">
+                <span>GitHub</span><span>Internship</span><span>Hackathon</span><span>Certs</span><span>Achievements</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="step glass">
+            <div class="step__n">2</div>
+            <div class="step__body">
+              <h3>AI structures the story</h3>
+              <p>We detect signals for your target role and rewrite bullets to show outcomes, not tasks.</p>
+              <div class="meter" role="img" aria-label="Impact meter animation">
+                <div class="meter__fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step glass">
+            <div class="step__n">3</div>
+            <div class="step__body">
+              <h3>Export everywhere</h3>
+              <p>Resume PDF layout, ATS doc, and portfolio landing — all consistent and shareable.</p>
+              <div class="export" aria-hidden="true">
+                <span>PDF</span><span>DOCX</span><span>Link</span><span>JSON</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="section">
+      <div class="container demoWide">
+        <div class="section__head">
+          <h2>Profile builder (live)</h2>
+          <p>Fill your details once – the profile page updates live.</p>
+        </div>
+
+        <div class="demo demoEmbed">
+          <div class="demo__right glass demoEmbed__panel">
+            <iframe src="./profile.html" title="ResuMint profile builder" class="demoEmbed__frame"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="callout glass">
+          <div class="callout__copy">
+            <h2>What makes this unique </h2>
+            <p>
+              The differentiator is a <b>Signal Graph</b>: instead of just generating text, ResuMint maps your content
+              to
+              hiring signals (impact, scope, ownership, tech depth) and explains <i>why</i> each bullet works.
+            </p>
+            <ul class="ticks ticks--big">
+              <li>Explainable suggestions </li>
+              <li>One-click portfolio page generation</li>
+              <li>Consistent “single source of truth” profile</li>
+            </ul>
+          </div>
+          <div class="callout__viz" aria-hidden="true">
+            <div class="signal">
+              <div class="signal__node n1"><span>Impact</span></div>
+              <div class="signal__node n2"><span>Ownership</span></div>
+              <div class="signal__node n3"><span>Scope</span></div>
+              <div class="signal__node n4"><span>Tech depth</span></div>
+              <div class="signal__node n5"><span>Clarity</span></div>
+              <svg class="signal__lines" viewBox="0 0 320 220">
+                <path d="M70 70 C120 20, 200 20, 250 80" />
+                <path d="M70 70 C110 120, 120 140, 150 160" />
+                <path d="M250 80 C240 120, 220 140, 150 160" />
+                <path d="M150 160 C165 175, 185 185, 215 180" />
+                <path d="M70 70 C90 110, 120 130, 105 170" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="glass" style="padding: 32px; border-radius: 24px; margin-top: 60px;">
+          <div class="section__head" style="margin-bottom: 20px;">
+            <h2 style="margin: 0;">FAQ</h2>
+          </div>
+
+          <div class="faq">
+            <details class="faq__item glass" style="background: rgba(255,255,255,0.03);">
+              <summary>What problem are you solving?</summary>
+              <p>
+                Students have skills and projects but struggle to present them in a way that reads like hiring signals.
+                We convert raw notes into structured, impact-first resume + portfolio content.
+              </p>
+            </details>
+            <details class="faq__item glass">
+              <summary>How is it different from existing resume builders?</summary>
+              <p>
+                Most tools are template-first. We’re <b>signal-first</b>: we score and explain impact, clarity, and role
+                fit, then generate content with consistent narrative across resume and portfolio.
+              </p>
+            </details>
+            <details class="faq__item glass">
+              <summary>What’s the AI part?</summary>
+              <p>
+                The core model can classify role intent, extract entities (tech, metrics, scope), and rewrite bullets
+                with
+                constraints (ATS-safe, quantified, non-buzzy). This landing demo simulates that flow.
+              </p>
+            </details>
+
+          </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta">
+      <div class="container cta__inner glass">
+        <div>
+          <h2>Ship a resume + portfolio that gets callbacks.</h2>
+          <p>Bring your notes. Leave with a story.</p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--primary btn--xl" href="#demo">Build mine now</a>
+          <a class="btn btn--ghost btn--xl" href="#features">See features</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <div class="brand brand--small">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img" focusable="false">
+              <path
+                d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2zm5.7 6.2c-1.6-1.7-3.4-2.6-5.6-2.6-3.9 0-7 3.1-7 7 0 3.9 3.1 7 7 7 2.2 0 4.1-.8 5.6-2.6l-2.2-1.8c-.9 1.1-2 1.6-3.4 1.6-2.2 0-4-1.8-4-4s1.8-4 4-4c1.4 0 2.6.6 3.4 1.6l2.2-1.8z"
+                fill="currentColor" />
+            </svg>
+          </span>
+          <span class="brand__text">
+            <span class="brand__name">ResuMint</span>
+            <span class="brand__tag">AI</span>
+          </span>
+        </div>
+        <p class="footer__note"></p>
+      </div>
+
+      <div class="footer__right">
+        <a href="#demo">Live demo</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta">Get started</a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="dialog" id="pitchDialog" aria-label="30-second pitch">
+    <div class="dialog__inner glass">
+      <div class="dialog__top">
+        <div class="dialog__title">30-second pitch</div>
+        <button class="iconbtn" id="closePitch" type="button" aria-label="Close dialog">✕</button>
+      </div>
+      <p class="dialog__p">
+        ResuMint AI is a resume + portfolio builder that’s <b>signal-first</b>. Instead of only formatting text, it maps
+        your projects and experience to hiring signals like impact, ownership, and tech depth — then rewrites bullets
+        with measurable outcomes, keeps everything ATS-friendly, and generates a matching portfolio page from the same
+        source profile.
+      </p>
+      <div class="dialog__actions">
+        <button class="btn btn--primary" id="copyPitch" type="button">Copy pitch</button>
+        <button class="btn btn--ghost" id="closePitch2" type="button">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="./3d.js" defer></script>
+</body>
+
+</html>

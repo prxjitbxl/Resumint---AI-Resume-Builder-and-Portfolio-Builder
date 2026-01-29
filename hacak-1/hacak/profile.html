@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Theme toggle removed (single default theme) -->
+  <title>ResuMint AI — Build your profile</title>
+  <meta name="description"
+    content="Build a resume-ready profile with AI guidance: education, projects, skills, and experience." />
+  <link rel="stylesheet" href="./profile.css" />
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar" data-elevate>
+    <div class="container topbar__inner">
+      <a class="brand" href="./3d.html" aria-label="Back to landing">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" focusable="false">
+            <path
+              d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2zm5.7 6.2c-1.6-1.7-3.4-2.6-5.6-2.6-3.9 0-7 3.1-7 7 0 3.9 3.1 7 7 7 2.2 0 4.1-.8 5.6-2.6l-2.2-1.8c-.9 1.1-2 1.6-3.4 1.6-2.2 0-4-1.8-4-4s1.8-4 4-4c1.4 0 2.6.6 3.4 1.6l2.2-1.8z"
+              fill="currentColor" />
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">ResuMint</span>
+          <span class="brand__tag">AI</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Profile builder">
+        <a href="#builder">Builder</a>
+        <a href="#preview">Preview</a>
+        <a href="#export">Export</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <button class="btn btn--ghost" id="jumpPreview" type="button">Live preview</button>
+        <button class="btn btn--ghost" id="resetAll" type="button">Reset</button>
+        <a class="btn btn--primary" href="#export">Export</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <section class="head">
+      <div>
+        <p class="pill">
+          <span class="pill__dot" aria-hidden="true"></span>
+          Profile → Resume → Portfolio (single source of truth)
+        </p>
+        <h1>Build your profile. <span class="grad">AI guides you</span> as you type.</h1>
+        <p class="lead">
+          Fill details once. ResuMint suggests stronger, measurable bullets and ATS-safe keywords — then renders a
+          recruiter-friendly preview on the right.
+        </p>
+      </div>
+    </section>
+
+    <section id="builder" class="layout">
+      <aside class="rail glass" aria-label="Progress">
+        <div class="rail__top">
+          <div class="rail__title">Progress</div>
+          <div class="rail__chip" id="completionChip">0% complete</div>
+        </div>
+        <ol class="steps" id="steps">
+          <li class="step is-active" data-step="basics">
+            <span class="step__n">1</span>
+            <span class="step__t">Basics</span>
+          </li>
+          <li class="step" data-step="education">
+            <span class="step__n">2</span>
+            <span class="step__t">Education</span>
+          </li>
+          <li class="step" data-step="skills">
+            <span class="step__n">3</span>
+            <span class="step__t">Skills</span>
+          </li>
+          <li class="step" data-step="projects">
+            <span class="step__n">4</span>
+            <span class="step__t">Projects</span>
+          </li>
+          <li class="step" data-step="experience">
+            <span class="step__n">5</span>
+            <span class="step__t">Experience</span>
+          </li>
+          <li class="step" data-step="custom">
+            <span class="step__n">6</span>
+            <span class="step__t">Add-ons</span>
+          </li>
+        </ol>
+
+        <div class="rail__actions">
+          <button class="btn btn--ghost" id="prevStep" type="button">Back</button>
+          <button class="btn btn--primary" id="nextStep" type="button">
+            Next <span class="btn__arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <div class="ai glass aiBox" aria-label="AI guide">
+          <div class="ai__top">
+            <div class="ai__title">AI Guide</div>
+            <div class="ai__pill" id="aiMode">Coach</div>
+          </div>
+          <div class="ai__msg" id="aiMsg">
+            Start with your name + target role. I’ll suggest ATS keywords and turn your project notes into impact
+            bullets.
+          </div>
+          <div class="ai__controls">
+            <button class="btn btn--ghost" id="aiSuggest" type="button">Suggest improvements</button>
+            <button class="btn btn--ghost" id="aiKeywords" type="button">Suggest keywords</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="form glass" aria-label="Profile form">
+        <form id="profileForm" autocomplete="on">
+          <!-- BASICS -->
+          <div class="panel is-active" data-panel="basics">
+            <div class="panel__head">
+              <h2>Basics</h2>
+              <p>These show at the top of your resume and portfolio.</p>
+            </div>
+
+            <div class="grid2">
+              <label class="field">
+                <span class="field__label">Full name</span>
+                <input class="field__control" id="fullName" name="fullName" placeholder="Your name" />
+              </label>
+              <label class="field">
+                <span class="field__label">Target role</span>
+                <select class="field__control" id="targetRole" name="targetRole">
+                  <option>Full-Stack Developer</option>
+                  <option>Frontend Developer</option>
+                  <option>AI/ML Engineer</option>
+                  <option>Data Scientist</option>
+                  <option>Product Intern</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="grid2">
+              <label class="field">
+                <span class="field__label">Email</span>
+                <input class="field__control" id="email" name="email" placeholder="name@email.com" />
+              </label>
+              <label class="field">
+                <span class="field__label">Location</span>
+                <input class="field__control" id="location" name="location" placeholder="City, Country" />
+              </label>
+            </div>
+
+            <div class="grid2">
+              <label class="field">
+                <span class="field__label">LinkedIn</span>
+                <input class="field__control" id="linkedin" name="linkedin" placeholder="linkedin.com/in/..." />
+              </label>
+              <label class="field">
+                <span class="field__label">GitHub / Portfolio</span>
+                <input class="field__control" id="github" name="github" placeholder="github.com/..." />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__label">1-line headline</span>
+              <input class="field__control" id="headline" name="headline"
+                placeholder="Example: AI + Web developer building fast, measurable products" />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Summary (2–3 lines)</span>
+              <textarea class="field__control" id="summary" name="summary" rows="4"
+                placeholder="Example: I build AI-powered web apps, measure outcomes, and ship clean UX. Interested in HR-tech and NLP."></textarea>
+            </label>
+          </div>
+
+          <!-- EDUCATION -->
+          <div class="panel" data-panel="education">
+            <div class="panel__head">
+              <h2>Education</h2>
+              <p>Keep it simple: university, degree, dates, and optional CGPA.</p>
+            </div>
+
+            <div class="grid2">
+              <label class="field">
+                <span class="field__label">University / College</span>
+                <input class="field__control" id="university" name="university" placeholder="Your university" />
+              </label>
+              <label class="field">
+                <span class="field__label">Degree</span>
+                <input class="field__control" id="degree" name="degree" placeholder="B.Tech / B.Sc / ..." />
+              </label>
+            </div>
+
+            <div class="grid2">
+              <label class="field">
+                <span class="field__label">Duration</span>
+                <input class="field__control" id="eduDates" name="eduDates" placeholder="2023 — 2027" />
+              </label>
+              <label class="field">
+                <span class="field__label">CGPA (optional)</span>
+                <input class="field__control" id="cgpa" name="cgpa" placeholder="Example: 8.6/10" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span class="field__label">Relevant coursework (comma separated)</span>
+              <input class="field__control" id="coursework" name="coursework" placeholder="AI, Web Tech, DBMS, OS..." />
+            </label>
+          </div>
+
+          <!-- SKILLS -->
+          <div class="panel" data-panel="skills">
+            <div class="panel__head">
+              <h2>Skills</h2>
+              <p>Add skills grouped by commas. The AI will suggest missing role keywords.</p>
+            </div>
+
+            <label class="field">
+              <span class="field__label">Technical skills</span>
+              <textarea class="field__control" id="skillsTech" name="skillsTech" rows="3"
+                placeholder="Example: JavaScript, React, Node.js, Python, NLP, Firebase"></textarea>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Tools / Platforms</span>
+              <textarea class="field__control" id="skillsTools" name="skillsTools" rows="3"
+                placeholder="Example: Git, Docker, Figma, Postman, Vercel"></textarea>
+            </label>
+          </div>
+
+          <!-- PROJECTS -->
+          <div class="panel" data-panel="projects">
+            <div class="panel__head">
+              <h2>Projects</h2>
+              <p>Add 1–3 projects. Use “what you built + tech + measurable impact”.</p>
+            </div>
+
+            <div class="cards" id="projects"></div>
+            <button class="btn btn--ghost" id="addProject" type="button">+ Add project</button>
+          </div>
+
+          <!-- EXPERIENCE -->
+          <div class="panel" data-panel="experience">
+            <div class="panel__head">
+              <h2>Experience</h2>
+              <p>Internship / club / leadership. The AI will rewrite bullets into action → impact.</p>
+            </div>
+
+            <div class="cards" id="experience"></div>
+            <button class="btn btn--ghost" id="addExperience" type="button">+ Add experience</button>
+          </div>
+
+          <!-- CUSTOM / ADD-ONS -->
+          <div class="panel" data-panel="custom">
+            <div class="panel__head">
+              <h2>Add-ons</h2>
+              <p>Certifications, Awards, Volunteering, or anything else.</p>
+            </div>
+            <div class="cards" id="custom"></div>
+            <button class="btn btn--ghost" id="addCustom" type="button">+ Add Item</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="preview" class="preview glass" aria-label="Resume preview">
+        <div class="preview__top">
+          <div>
+            <div class="preview__title">Live preview</div>
+            <div class="preview__sub">ATS-friendly structure • auto-updates</div>
+          </div>
+          <div class="preview__actions">
+            <button class="btn btn--ghost" id="aiBullets" type="button">Rewrite bullets</button>
+            <button class="btn btn--ghost" id="printBtn" type="button">Print</button>
+          </div>
+        </div>
+
+        <article class="resume" id="resumePreview">
+          <div class="resume__hdr">
+            <div class="resume__name" id="pvName">Your Name</div>
+            <div class="resume__meta" id="pvMeta">Role • Location • Email • Links</div>
+            <div class="resume__headline" id="pvHeadline">Your 1-line headline</div>
+          </div>
+
+          <section class="resume__sec">
+            <div class="resume__h">Summary</div>
+            <div class="resume__p" id="pvSummary">Write a short summary. The AI guide will keep it crisp.</div>
+          </section>
+
+          <section class="resume__sec">
+            <div class="resume__h">Education</div>
+            <div class="resume__p" id="pvEdu">University • Degree • Dates • CGPA</div>
+            <div class="resume__p muted" id="pvCoursework"></div>
+          </section>
+
+          <section class="resume__sec">
+            <div class="resume__h">Skills</div>
+            <div class="tags" id="pvSkills"></div>
+          </section>
+
+          <section class="resume__sec">
+            <div class="resume__h">Projects</div>
+            <div class="resume__list" id="pvProjects"></div>
+          </section>
+
+          <section class="resume__sec">
+            <div class="resume__h">Experience</div>
+            <div class="resume__list" id="pvExperience"></div>
+          </section>
+        </article>
+
+        <section id="export" class="export">
+          <div class="export__head">
+            <div class="export__title">Export</div>
+            <div class="export__sub">Choose a design and export your resume + portfolio as PDF.</div>
+          </div>
+          <div class="export__grid">
+            <button class="btn btn--primary" id="openExport" type="button">Export</button>
+            <button class="btn btn--ghost" id="copyAll" type="button">Copy resume text</button>
+            <button class="btn btn--ghost" id="saveLocal" type="button">Save locally</button>
+          </div>
+          <div class="export__note" id="exportNote"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="./profile.js" defer></script>
+</body>
+
+</html>

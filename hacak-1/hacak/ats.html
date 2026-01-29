@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ResuMint — ATS Checker</title>
+  <meta name="description" content="Quick ATS-style checks: keywords, structure, impact metrics, and suggestions." />
+  <link rel="stylesheet" href="./ats.css" />
+</head>
+
+<body>
+  <main class="ats">
+    <header class="ats__top">
+      <div>
+        <div class="ats__title">ATS checker</div>
+        <div class="ats__sub">Paste resume text → get score, missing keywords, and quick fixes.</div>
+      </div>
+      <div class="ats__actions">
+        <button class="btn" id="loadProfile" type="button">Load from profile</button>
+        <button class="btn btn--primary" id="analyzeBtn" type="button">Analyze</button>
+      </div>
+    </header>
+
+    <section class="ats__grid">
+      <section class="panel">
+        <div class="row">
+          <label class="field">
+            <span class="field__label">Target role</span>
+            <select class="field__control" id="role">
+              <option>Full-Stack Developer</option>
+              <option>Frontend Developer</option>
+              <option>AI/ML Engineer</option>
+              <option>Data Scientist</option>
+              <option>Product Intern</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field__label">Experience level</span>
+            <select class="field__control" id="level">
+              <option value="student">Student / Fresher</option>
+              <option value="junior">Junior</option>
+              <option value="mid">Mid</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Resume text</span>
+          <textarea class="field__control" id="resumeText" rows="10"
+            placeholder="Paste your resume text here (plain text is best)."></textarea>
+        </label>
+
+        <div class="hint">
+          Tip: Use plain text export from your resume. ATS struggles with tables, icons, and 2-column PDFs.
+        </div>
+      </section>
+
+      <aside class="panel panel--right" aria-label="ATS results" style="position: relative; overflow: hidden;">
+        <!-- Scanning Overlay -->
+        <div class="scanOverlay" id="scanOverlay" aria-hidden="true">
+          <div class="scanOverlay__line"></div>
+          <div class="scanOverlay__msg" id="scanMsg">Initializing scanner...</div>
+        </div>
+
+        <div class="score">
+          <div class="score__ring" aria-hidden="true">
+            <div class="score__ringInner">
+              <div class="score__num" id="scoreNum" data-target="0">0</div>
+              <div class="score__lbl">Score</div>
+            </div>
+          </div>
+          <div class="score__meta">
+            <div class="kpi">
+              <div class="kpi__k">Keyword match</div>
+              <div class="kpi__bar">
+                <div class="kpi__fill" id="kwBar"></div>
+              </div>
+              <div class="kpi__v" id="kwPct">0%</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__k">Structure</div>
+              <div class="kpi__bar">
+                <div class="kpi__fill" id="structBar"></div>
+              </div>
+              <div class="kpi__v" id="structPct">0%</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__k">Impact</div>
+              <div class="kpi__bar">
+                <div class="kpi__fill" id="impactBar"></div>
+              </div>
+              <div class="kpi__v" id="impactPct">0%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sections">
+          <div class="sections__title">Checks</div>
+          <div class="checks" id="checks"></div>
+        </div>
+
+        <div class="sections">
+          <div class="sections__title">Missing keywords</div>
+          <div class="tags" id="missingTags"></div>
+        </div>
+
+        <div class="sections">
+          <div class="sections__title">Fixes</div>
+          <ul class="fixes" id="fixes"></ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./ats.js" defer></script>
+</body>
+
+</html>

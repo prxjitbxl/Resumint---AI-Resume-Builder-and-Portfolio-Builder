@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>ResuMint AI — Export</title>
+  <meta name="description"
+    content="Choose a resume and portfolio design, then export your ResuMint AI profile as a PDF." />
+  <link rel="stylesheet" href="./export.css" />
+</head>
+
+<body>
+  <header class="top">
+    <button class="top__back" type="button" onclick="location.href='./profile.html'">← Back</button>
+    <div class="top__brand">
+      <span class="top__logo">
+        <svg viewBox="0 0 24 24" role="img" focusable="false">
+          <path
+            d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2zm5.7 6.2c-1.6-1.7-3.4-2.6-5.6-2.6-3.9 0-7 3.1-7 7 0 3.9 3.1 7 7 7 2.2 0 4.1-.8 5.6-2.6l-2.2-1.8c-.9 1.1-2 1.6-3.4 1.6-2.2 0-4-1.8-4-4s1.8-4 4-4c1.4 0 2.6.6 3.4 1.6l2.2-1.8z"
+            fill="currentColor"></path>
+        </svg>
+      </span>
+      <div>
+        <div class="top__title">ResuMint export</div>
+        <div class="top__sub">Pick a resume + portfolio layout, then export as PDF.</div>
+      </div>
+    </div>
+    <!-- Theme toggle removed as requested -->
+  </header>
+
+  <main class="page">
+    <section class="column column--left">
+      <h2>1. Choose resume design</h2>
+      <p class="muted">These pull your data from the profile builder automatically.</p>
+      <div class="designGrid" id="resumeGrid" aria-label="Resume designs"></div>
+    </section>
+
+    <section class="column column--right">
+      <h2>2. Choose portfolio design</h2>
+      <p class="muted">Optional but recommended for hackathon demos.</p>
+      <div class="designGrid" id="portfolioGrid" aria-label="Portfolio designs"></div>
+
+      <div class="exportBar">
+        <div class="exportBar__info" id="exportInfo">Select at least one design to enable export.</div>
+        <button class="btnPrimary" id="exportPdf" type="button" disabled>Export as PDF</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Print-only area (we copy the selected layouts here before printing) -->
+  <section id="printRoot" class="printRoot" aria-hidden="true"></section>
+
+  <script src="./export.js" defer></script>
+</body>
+
+</html>

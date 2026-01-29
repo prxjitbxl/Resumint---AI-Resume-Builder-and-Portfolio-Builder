@@ -1,0 +1,292 @@
+:root{
+  --introDur: 2400ms;
+  --introEase: cubic-bezier(.2,.9,.2,1);
+}
+
+/* 3D Opening Overlay */
+.intro3d{
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background:
+    radial-gradient(900px 520px at 40% 40%, rgba(46,242,197,.16), transparent 60%),
+    radial-gradient(900px 560px at 70% 30%, rgba(139,92,255,.16), transparent 60%),
+    radial-gradient(900px 620px at 55% 80%, rgba(255,79,216,.12), transparent 60%),
+    rgba(6,7,18,.78);
+  backdrop-filter: blur(10px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+html[data-theme="light"] .intro3d{
+  background:
+    radial-gradient(900px 520px at 40% 40%, rgba(46,242,197,.14), transparent 60%),
+    radial-gradient(900px 560px at 70% 30%, rgba(139,92,255,.12), transparent 60%),
+    radial-gradient(900px 620px at 55% 80%, rgba(255,79,216,.10), transparent 60%),
+    rgba(247,248,255,.82);
+}
+
+body.intro-done .intro3d{
+  opacity: 0;
+  transform: scale(.98);
+  pointer-events: none;
+}
+
+.intro3d__stage{
+  width: min(860px, calc(100vw - 44px));
+  height: min(520px, calc(100vh - 140px));
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 30px 120px rgba(0,0,0,.55);
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1100px;
+}
+
+.intro3d__hud{
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  color: rgba(233,236,255,.82);
+  font-size: 13px;
+  letter-spacing:.06em;
+  text-transform: uppercase;
+}
+.intro3d__hud b{
+  letter-spacing:-.02em;
+  text-transform:none;
+  font-size: 14px;
+  background: linear-gradient(90deg, #2ef2c5, #33b9ff 35%, #8b5cff 65%, #ff4fd8);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.intro3d__skip{
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(233,236,255,.86);
+  cursor:pointer;
+}
+.intro3d__skip:hover{background: rgba(255,255,255,.10)}
+
+.intro3d__center{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  transform-style: preserve-3d;
+}
+
+/* The “portal” */
+.portal{
+  width: min(380px, 68vw);
+  aspect-ratio: 1/1;
+  border-radius: 999px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(40px);
+  animation: portalSpin var(--introDur) var(--introEase) both;
+}
+.portal::before{
+  content:"";
+  position:absolute;
+  inset:-22px;
+  border-radius: 999px;
+  background:
+    conic-gradient(from 130deg,
+      rgba(46,242,197,.0),
+      rgba(46,242,197,.55),
+      rgba(51,185,255,.55),
+      rgba(139,92,255,.55),
+      rgba(255,79,216,.50),
+      rgba(46,242,197,.0));
+  filter: blur(14px);
+  opacity:.95;
+}
+.portal::after{
+  content:"";
+  position:absolute;
+  inset: 16px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.12), transparent 45%),
+    radial-gradient(circle at 60% 60%, rgba(46,242,197,.12), transparent 55%),
+    radial-gradient(circle at 55% 45%, rgba(139,92,255,.12), transparent 60%),
+    rgba(0,0,0,.30);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: inset 0 0 40px rgba(0,0,0,.35);
+}
+
+/* App logo inside the portal */
+.portal__logo{
+  position:absolute;
+  inset: 0;
+  display:grid;
+  place-items:center;
+  transform: translateZ(60px);
+  pointer-events:none;
+}
+.portal__logo svg{
+  width: 72px;
+  height: 72px;
+  padding: 16px;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,.16);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(46,242,197,.22), transparent 60%),
+    radial-gradient(circle at 60% 60%, rgba(139,92,255,.18), transparent 60%),
+    rgba(255,255,255,.06);
+  box-shadow: 0 24px 80px rgba(0,0,0,.45);
+  color: rgba(233,236,255,.92);
+  filter: drop-shadow(0 10px 26px rgba(46,242,197,.10));
+}
+
+/* Floating 3D tiles */
+.tiles{
+  position:absolute;
+  inset:0;
+  transform-style: preserve-3d;
+}
+.tile{
+  position:absolute;
+  width: 130px;
+  height: 78px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  box-shadow: 0 20px 60px rgba(0,0,0,.40);
+  display:grid;
+  place-items:center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  opacity: 0;
+  animation: tileIn var(--introDur) var(--introEase) both;
+}
+.tile span{
+  font-weight: 820;
+  letter-spacing:-.02em;
+  background: linear-gradient(90deg, #2ef2c5, #33b9ff 35%, #8b5cff 65%, #ff4fd8);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.t1{left:12%; top:22%; transform: rotateY(24deg) rotateX(10deg) translateZ(120px)}
+.t2{right:14%; top:26%; transform: rotateY(-28deg) rotateX(14deg) translateZ(140px); animation-delay: 80ms}
+.t3{left:18%; bottom:22%; transform: rotateY(18deg) rotateX(-14deg) translateZ(160px); animation-delay: 140ms}
+.t4{right:18%; bottom:18%; transform: rotateY(-18deg) rotateX(-10deg) translateZ(120px); animation-delay: 220ms}
+
+.intro3d__title{
+  position:absolute;
+  bottom: 26px;
+  left: 26px;
+  right: 26px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 16px;
+  transform: translateZ(90px);
+}
+.intro3d__title h1{
+  margin:0;
+  font-size: clamp(26px, 3.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing:-.04em;
+}
+.intro3d__title p{
+  margin: 6px 0 0;
+  max-width: 62ch;
+  color: rgba(182,189,220,.92);
+  line-height: 1.55;
+  font-size: 13px;
+}
+.intro3d__spark{
+  width: 64px;
+  height: 64px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(46,242,197,.35), transparent 60%),
+    radial-gradient(circle at 60% 60%, rgba(139,92,255,.28), transparent 60%),
+    rgba(255,255,255,.05);
+  box-shadow: 0 20px 70px rgba(0,0,0,.40);
+  transform: rotateZ(12deg) translateZ(140px);
+  animation: sparkPop var(--introDur) var(--introEase) both;
+}
+
+@keyframes portalSpin{
+  0%{ transform: translateZ(40px) rotateZ(-18deg) rotateX(18deg); filter: saturate(1.2) }
+  45%{ transform: translateZ(40px) rotateZ(120deg) rotateX(26deg) }
+  78%{ transform: translateZ(40px) rotateZ(270deg) rotateX(18deg) }
+  100%{ transform: translateZ(40px) rotateZ(360deg) rotateX(12deg) }
+}
+
+@keyframes tileIn{
+  0%{ opacity:0; transform: translateZ(10px) scale(.86) rotateX(20deg) rotateY(-12deg) }
+  45%{ opacity:1 }
+  100%{ opacity:1 }
+}
+
+@keyframes sparkPop{
+  0%{ opacity:0; transform: rotateZ(12deg) translateZ(40px) scale(.85) }
+  40%{ opacity:1; transform: rotateZ(12deg) translateZ(140px) scale(1) }
+  100%{ opacity:1 }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .intro3d{display:none}
+}
+
+/* -------- Embedded profile builder (3d.html) -------- */
+.demoWide{
+  /* Wider than the default --max (1220px) so the embedded builder can show 3 columns */
+  --max: 1560px;
+  width: 100%;
+  max-width: none;
+  padding-inline: 24px;
+}
+.demoEmbed{
+  gap: 0;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+.demoEmbed__panel{
+  width: 100%;
+  margin: 0;
+  max-width: none;
+  padding: 14px;
+  border-radius: 26px;
+}
+.demoEmbed__frame{
+  display: block;
+  width: 100%;
+  /* Show the same UI as profile.html (top + builder) */
+  height: min(920px, calc(100vh - 160px));
+  border: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* ATS checker embed (hero card) */
+.atsFrame{
+  display:block;
+  width:100%;
+  height: 460px;
+  border:0;
+  border-radius: 18px;
+  overflow:hidden;
+  background: transparent;
+}
+
